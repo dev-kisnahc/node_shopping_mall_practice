@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
-
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,8 @@
   },
   "homepage": "https://github.com/kisnahc/node_shopping_mall_0911#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

@@ -1,11 +1,14 @@
 const express = require('express')
 
+const logger = require("morgan")
+
 const app = express()
 
 const productRoute = require('./routes/product')
 
 const orderRoute = require('./routes/order')
 
+app.use(logger('dev'))
 
 // app.use((req, res) =>{
 //      res.json({
