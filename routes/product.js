@@ -7,10 +7,19 @@ const router = express.Router()
 
 //product create API
 router.post('/',(req, res)=>{
+
+    const newProduct = {
+        name: req.body.productname,
+        price: req.body.productprice
+    }
+
+
     res.json({
-        msg: 'product create API'
+        msg: 'product create API',
+        productinfo: newProduct
     })
 })
+
 //product read API
 router.get('/', (req, res)=>{
     res.json({

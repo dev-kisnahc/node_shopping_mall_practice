@@ -1,7 +1,7 @@
 const express = require('express')
 
 const logger = require("morgan")
-
+const bodyParser = require('body-parser')
 const app = express()
 
 const productRoute = require('./routes/product')
@@ -9,12 +9,9 @@ const productRoute = require('./routes/product')
 const orderRoute = require('./routes/order')
 
 app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
-// app.use((req, res) =>{
-//      res.json({
-//          msg : 'seccessful data'
-//      })
-// })
 
 app.use('/product', productRoute)
 app.use('/order', orderRoute)
