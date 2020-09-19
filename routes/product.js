@@ -39,9 +39,7 @@ router.post('/',(req, res) => {
 
 //product read API
 router.get('/', (req, res)=>{
-    // res.json({
-    //     msg:'product read API'
-    // })
+
     productModel
         .find()
         .then(docs => {
@@ -56,10 +54,29 @@ router.get('/', (req, res)=>{
                 msg: err.message
             })
         })
+})
+
+// product detail get API
+router.get('/:productID', (req, res)=>{
+    const id = req.params.productID
+
+    productModel
+        .findById(id)
+        .then(doc => {
+            res.json({
+                msg: 'succssful get product by '+id,
+                productInfo: doc
+            })
+        })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
+
 
 
 })
-
 
 
 
@@ -69,6 +86,8 @@ router.patch('/', (req, res)=>{
         msg:'product update API'
     })
 })
+
+
 //product delete API
 router.delete('/',(req, res)=>{
     res.json({
