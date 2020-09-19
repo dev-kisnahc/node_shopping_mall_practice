@@ -5,7 +5,6 @@ const router = express.Router()
 const productModel = require('../models/product')
 
 // Data Create -Read/Retrive - Update - Delete
-
 //product create API
 router.post('/',(req, res) => {
     // const newProduct = {
@@ -36,16 +35,34 @@ router.post('/',(req, res) => {
                 msg: err.message
             })
         })
-
-
 })
 
 //product read API
 router.get('/', (req, res)=>{
-    res.json({
-        msg:'product read API'
-    })
+    // res.json({
+    //     msg:'product read API'
+    // })
+    productModel
+        .find()
+        .then(docs => {
+            res.json({
+                msg: "total get products",
+                count: docs.length,
+                products: docs
+            })
+        })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
+
+
 })
+
+
+
+
 //product update API
 router.patch('/', (req, res)=>{
     res.json({
