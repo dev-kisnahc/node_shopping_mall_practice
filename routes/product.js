@@ -2,20 +2,42 @@ const express = require('express')
 
 const router = express.Router()
 
+const productModel = require('../models/product')
 
 // Data Create -Read/Retrive - Update - Delete
 
 //product create API
-router.post('/',(req, res)=>{
-    const newProduct = {
+router.post('/',(req, res) => {
+    // const newProduct = {
+    //     name: req.body.productname,
+    //     price: req.body.productprice
+    // }
+    //
+    // res.json({
+    //     msg: 'product create API',
+    //     productinfo: newProduct
+    // })
+
+    const newProduct = new productModel({
         name: req.body.productname,
         price: req.body.productprice
-    }
-
-    res.json({
-        msg: 'product create API',
-        productinfo: newProduct
     })
+
+    newProduct
+        .save()
+        .then(doc => {
+            res.json({
+                msg: "saved product",
+                productInfo: doc
+            })
+        })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
+
+
 })
 
 //product read API

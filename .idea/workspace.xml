@@ -20,8 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e29ef2e4-bc91-4257-9ba4-5b9f1b84ae73" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/product.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
       <workItem from="1600061216309" duration="539000" />
       <workItem from="1600504587439" duration="2000" />
       <workItem from="1600504602092" duration="22000" />
-      <workItem from="1600504639573" duration="1740000" />
+      <workItem from="1600504639573" duration="2821000" />
     </task>
     <servers />
   </component>
@@ -96,6 +98,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="100" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600506845664">
+      <screen x="0" y="23" width="1440" height="830" />
+    </state>
+    <state x="184" y="100" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.830@0.23.1440.830" timestamp="1600506845664" />
     <state x="221" y="65" key="SettingsEditor" timestamp="1599833457127">
       <screen x="0" y="23" width="1440" height="808" />
     </state>
@@ -104,5 +110,9 @@
       <screen x="0" y="23" width="1440" height="808" />
     </state>
     <state x="227" y="204" width="919" height="526" key="dock-window-1/1440.23.1194.733/0.23.1440.808@0.23.1440.808" timestamp="1599839287494" />
+    <state x="385" y="177" width="670" height="676" key="search.everywhere.popup" timestamp="1600506456371">
+      <screen x="0" y="23" width="1440" height="830" />
+    </state>
+    <state x="385" y="177" width="670" height="676" key="search.everywhere.popup/0.23.1440.830@0.23.1440.830" timestamp="1600506456371" />
   </component>
 </project>

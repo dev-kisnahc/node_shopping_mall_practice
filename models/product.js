@@ -8,10 +8,7 @@ const productSchema = mongoose.Schema({
     //4.
     name: String,
     price: Number
-
-
 })
-
 
 
 //3.
