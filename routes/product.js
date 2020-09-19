@@ -7,12 +7,10 @@ const router = express.Router()
 
 //product create API
 router.post('/',(req, res)=>{
-
     const newProduct = {
         name: req.body.productname,
         price: req.body.productprice
     }
-
 
     res.json({
         msg: 'product create API',
@@ -38,8 +36,6 @@ router.delete('/',(req, res)=>{
         msg:'product delete API'
     })
 })
-
-
 
 
 
