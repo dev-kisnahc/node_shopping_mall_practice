@@ -43,6 +43,11 @@ router.get('/', (req, res)=>{
     productModel
         .find()
         .then(docs => {
+            if(docs.length === 0){
+                res.json({
+                    msg: '등록된 프로덕트가 없음'
+                })
+            }
             res.json({
                 msg: "total get products",
                 count: docs.length,
@@ -63,6 +68,12 @@ router.get('/:productID', (req, res)=>{
     productModel
         .findById(id)
         .then(doc => {
+            if(!doc){
+                res.json({
+                    msg: "no prodct id"
+                })
+            }
+
             res.json({
                 msg: 'succssful get product by '+id,
                 productInfo: doc
@@ -90,9 +101,36 @@ router.patch('/', (req, res)=>{
 
 //product delete API
 router.delete('/',(req, res)=>{
-    res.json({
-        msg:'product delete API'
-    })
+
+    productModel
+        .remove()
+        .then(doc => {
+            res.json({
+                msg: 'delete products'
+            })
+        })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
+})
+
+router.delete('/:productID', (req, res)=>{
+    const id = req.params.productID
+
+    productModel
+        .findByIdAndDelete(id)
+        .then(doc => {
+            res.json({
+                msg: 'delete product'
+            })
+        })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
 })
 
 
