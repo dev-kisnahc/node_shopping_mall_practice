@@ -71,6 +71,7 @@ router.get('/', (req, res)=>{
 
     orderModel
         .find()
+        .populate('product', ['name', 'price'])
         .then(docs => {
             if(docs.length === 0){
                 res.json({
@@ -148,6 +149,7 @@ router.get('/:orderID', (req, res) => {
 
     orderModel
         .findById(id)
+        .populate('product', ['name', 'price'])
         .then(doc => {
             res.json({
                 msg: "succssful get order by" +id,
