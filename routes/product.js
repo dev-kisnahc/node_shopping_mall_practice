@@ -70,7 +70,7 @@ router.get('/:productID', (req, res)=>{
         .then(doc => {
             if(!doc){
                 res.json({
-                    msg: "no prodct id"
+                    msg: "no product id"
                 })
             }
 
@@ -92,10 +92,28 @@ router.get('/:productID', (req, res)=>{
 
 
 //product update API
-router.patch('/', (req, res)=>{
-    res.json({
-        msg:'product update API'
-    })
+router.patch('/:productID', (req, res)=>{
+   const id = req.params.productID
+
+    // 프로덕트모델에서 아이디를 찾고 업데이트내용을 실행
+    const updateOps = {}
+    for (const ops of req.body) {
+        updateOps[ops.propName] = ops.value
+    }
+
+
+    productModel
+        .findByIdAndUpdate(id, {$set: updateOps })
+        .then(result => {
+            res.json({
+                msg: 'updated at ' +id
+            })
+        })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
 })
 
 
