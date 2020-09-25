@@ -27,7 +27,15 @@ router.post('/',(req, res) => {
         .then(doc => {
             res.json({
                 msg: "saved product",
-                productInfo: doc
+                productInfo: {
+                    id: doc._id,
+                    name: doc.name,
+                    price: doc.price,
+                    request: {
+                        type: "GET",
+                        url: "http://localhost:5000/product/" + doc._id
+                    }
+                }
             })
         })
         .catch(err => {
@@ -51,7 +59,18 @@ router.get('/', (req, res)=>{
             res.json({
                 msg: "total get products",
                 count: docs.length,
-                products: docs
+                products: docs.map(doc => {
+                    return{
+                        id: doc._id,
+                        name: doc.name,
+                        price: doc.price,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:5000/product/" + doc._id
+                        }
+                    }
+
+                })
             })
         })
         .catch(err => {
@@ -76,7 +95,16 @@ router.get('/:productID', (req, res)=>{
 
             res.json({
                 msg: 'succssful get product by '+id,
-                productInfo: doc
+                productInfo: {
+                    id: doc._id,
+                    name: doc.name,
+                    price: doc.price,
+                    request: {
+                        type: "GET",
+                        url: "http://localhost:5000/product"
+                    }
+                }
+
             })
         })
         .catch(err => {
@@ -97,16 +125,26 @@ router.patch('/:productID', (req, res)=>{
 
     // 프로덕트모델에서 아이디를 찾고 업데이트내용을 실행
     const updateOps = {}
+
+    // console.log("+++++++++++", req.body)
+
     for (const ops of req.body) {
+
         updateOps[ops.propName] = ops.value
+        // console.log("----", updateOps)
     }
+
 
 
     productModel
         .findByIdAndUpdate(id, {$set: updateOps })
-        .then(result => {
+        .then(() => {
             res.json({
-                msg: 'updated at ' +id
+                msg: 'updated at ' +id,
+                request: {
+                    type: "GET",
+                    url: "http://localhost:5000/product/" + id
+                }
             })
         })
         .catch(err => {
@@ -124,7 +162,11 @@ router.delete('/',(req, res)=>{
         .remove()
         .then(doc => {
             res.json({
-                msg: 'delete products'
+                msg: 'delete products',
+                request: {
+                    type: "GET",
+                    url: "http://localhost:5000/product/"
+                }
             })
         })
         .catch(err => {
@@ -141,7 +183,11 @@ router.delete('/:productID', (req, res)=>{
         .findByIdAndDelete(id)
         .then(doc => {
             res.json({
-                msg: 'delete product'
+                msg: 'delete product',
+                request: {
+                    type: "GET",
+                    url: "http://localhost:5000/product/"
+                }
             })
         })
         .catch(err => {

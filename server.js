@@ -12,7 +12,8 @@ const dbAddress = "mongodb+srv://kisnahc:rkdcks12@cluster0.kck9d.mongodb.net/sho
 
 const dbOptions = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }
 
 mongoose
