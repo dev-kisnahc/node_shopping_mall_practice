@@ -3,10 +3,10 @@ const express = require('express')
 const router = express.Router()
 
 const orderModel = require("../models/order")
+const checkAuth = require("../middleware/check-auth")
 
 
-
-router.post('/',(req, res)=>{
+router.post('/',checkAuth, (req, res)=>{
 
     const newOrder = new orderModel({
         product: req.body.productid,
@@ -40,7 +40,7 @@ router.post('/',(req, res)=>{
 
 })
 
-router.patch('/:orderID',(req, res)=>{
+router.patch('/:orderID',checkAuth, (req, res)=>{
     const id = req.params.orderID
 
     const updateOps = {}
@@ -101,7 +101,7 @@ router.get('/', (req, res)=>{
         })
 })
 
-router.delete('/', (req, res)=>{
+router.delete('/',checkAuth, (req, res)=>{
 
     orderModel
         .remove()
@@ -121,7 +121,7 @@ router.delete('/', (req, res)=>{
         })
 })
 
-router.delete('/:orderID', (req, res) => {
+router.delete('/:orderID',checkAuth, (req, res) => {
 
     const id = req.params.orderID
 
@@ -143,7 +143,7 @@ router.delete('/:orderID', (req, res) => {
         })
 })
 
-router.get('/:orderID', (req, res) => {
+router.get('/:orderID',checkAuth, (req, res) => {
 
     const id = req.params.orderID
 

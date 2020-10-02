@@ -3,10 +3,11 @@ const express = require('express')
 const router = express.Router()
 
 const productModel = require('../models/product')
+const checkAuth = require("../middleware/check-auth")
 
 // Data Create -Read/Retrive - Update - Delete
 //product create API
-router.post('/',(req, res) => {
+router.post('/',checkAuth,(req, res) => {
     // const newProduct = {
     //     name: req.body.productname,
     //     price: req.body.productprice
@@ -81,8 +82,9 @@ router.get('/', (req, res)=>{
 })
 
 // product detail get API
-router.get('/:productID', (req, res)=>{
+router.get('/:productID', checkAuth, (req, res)=>{
     const id = req.params.productID
+
 
     productModel
         .findById(id)
@@ -120,7 +122,7 @@ router.get('/:productID', (req, res)=>{
 
 
 //product update API
-router.patch('/:productID', (req, res)=>{
+router.patch('/:productID',checkAuth, (req, res)=>{
    const id = req.params.productID
 
     // 프로덕트모델에서 아이디를 찾고 업데이트내용을 실행
@@ -155,7 +157,7 @@ router.patch('/:productID', (req, res)=>{
 
 
 //product delete API
-router.delete('/',(req, res)=>{
+router.delete('/',checkAuth, (req, res)=>{
 
     productModel
         .remove()
@@ -175,7 +177,7 @@ router.delete('/',(req, res)=>{
         })
 })
 
-router.delete('/:productID', (req, res)=>{
+router.delete('/:productID',checkAuth, (req, res)=>{
     const id = req.params.productID
 
     productModel

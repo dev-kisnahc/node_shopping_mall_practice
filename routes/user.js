@@ -6,6 +6,8 @@ const router = express.Router()
 
 const userModel = require("../models/user")
 
+
+
 // 회원가입 API
 
 router.post('/register', (req, res) => {
@@ -35,7 +37,6 @@ router.post('/register', (req, res) => {
                             email: req.body.useremail,
                             password: hash,
                             birth: req.body.userbirth
-
 
 
                         })
@@ -116,5 +117,6 @@ router.post('/login', (req, res) => {
             })
         })
 })
+
 
 module.exports = router
