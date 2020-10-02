@@ -2,201 +2,39 @@ const express = require('express')
 
 const router = express.Router()
 
-const productModel = require('../models/product')
+
 const checkAuth = require("../middleware/check-auth")
+
+
+const {
+    products_get_product,
+    products_get_detail,
+    products_post_product,
+    products_delete_product,
+    products_delete_detail,
+    products_update_product
+} = require('../controllers/product')
 
 // Data Create -Read/Retrive - Update - Delete
 //product create API
-router.post('/',checkAuth,(req, res) => {
-    // const newProduct = {
-    //     name: req.body.productname,
-    //     price: req.body.productprice
-    // }
-    //
-    // res.json({
-    //     msg: 'product create API',
-    //     productinfo: newProduct
-    // })
-
-    const newProduct = new productModel({
-        name: req.body.productname,
-        price: req.body.productprice
-    })
-
-    newProduct
-        .save()
-        .then(doc => {
-            res.json({
-                msg: "saved product",
-                productInfo: {
-                    id: doc._id,
-                    name: doc.name,
-                    price: doc.price,
-                    request: {
-                        type: "GET",
-                        url: "http://localhost:5000/product/" + doc._id
-                    }
-                }
-            })
-        })
-        .catch(err => {
-            res.json({
-                msg: err.message
-            })
-        })
-})
+router.post('/',checkAuth, products_post_product)
 
 //product read API
-router.get('/', (req, res)=>{
-
-    productModel
-        .find()
-        .then(docs => {
-            if(docs.length === 0){
-                return res.json({
-                    msg: '등록된 프로덕트가 없음'
-                })
-            }
-            res.json({
-                msg: "total get products",
-                count: docs.length,
-                products: docs.map(doc => {
-                    return{
-                        id: doc._id,
-                        name: doc.name,
-                        price: doc.price,
-                        request: {
-                            type: "GET",
-                            url: "http://localhost:5000/product/" + doc._id
-                        }
-                    }
-
-                })
-            })
-        })
-        .catch(err => {
-            res.json({
-                msg: err.message
-            })
-        })
-})
+router.get('/', products_get_product)
 
 // product detail get API
-router.get('/:productID', checkAuth, (req, res)=>{
-    const id = req.params.productID
-
-
-    productModel
-        .findById(id)
-        .then(doc => {
-            if(!doc){
-                return res.json({
-                    msg: "no product id"
-                })
-            }
-
-            res.json({
-                msg: 'succssful get product by '+id,
-                productInfo: {
-                    id: doc._id,
-                    name: doc.name,
-                    price: doc.price,
-                    request: {
-                        type: "GET",
-                        url: "http://localhost:5000/product"
-                    }
-                }
-
-            })
-        })
-        .catch(err => {
-            res.json({
-                msg: err.message
-            })
-        })
-
-
-
-})
+router.get('/:productID', checkAuth, products_get_detail)
 
 
 
 //product update API
-router.patch('/:productID',checkAuth, (req, res)=>{
-   const id = req.params.productID
-
-    // 프로덕트모델에서 아이디를 찾고 업데이트내용을 실행
-    const updateOps = {}
-
-    // console.log("+++++++++++", req.body)
-
-    for (const ops of req.body) {
-        updateOps[ops.propName] = ops.value
-         console.log("----", updateOps)
-    }
-
-
-
-    productModel
-        .findByIdAndUpdate(id, {$set: updateOps })
-        .then(() => {
-            res.json({
-                msg: 'updated at ' +id,
-                request: {
-                    type: "GET",
-                    url: "http://localhost:5000/product/" + id
-                }
-            })
-        })
-        .catch(err => {
-            res.json({
-                msg: err.message
-            })
-        })
-})
+router.patch('/:productID',checkAuth, products_update_product)
 
 
 //product delete API
-router.delete('/',checkAuth, (req, res)=>{
+router.delete('/',checkAuth, products_delete_product)
 
-    productModel
-        .remove()
-        .then(doc => {
-            res.json({
-                msg: 'delete products',
-                request: {
-                    type: "GET",
-                    url: "http://localhost:5000/product/"
-                }
-            })
-        })
-        .catch(err => {
-            res.json({
-                msg: err.message
-            })
-        })
-})
-
-router.delete('/:productID',checkAuth, (req, res)=>{
-    const id = req.params.productID
-
-    productModel
-        .findByIdAndDelete(id)
-        .then(doc => {
-            res.json({
-                msg: 'delete product',
-                request: {
-                    type: "GET",
-                    url: "http://localhost:5000/product/"
-                }
-            })
-        })
-        .catch(err => {
-            res.json({
-                msg: err.message
-            })
-        })
-})
+router.delete('/:productID',checkAuth, products_delete_detail)
 
 
 
