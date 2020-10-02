@@ -82,7 +82,18 @@ router.post('/login', (req, res) => {
                 })
             }
             else {
-
+                bcrypt.compare(req.body.userpassword, user.password, (err, isMatch) => {
+                    if(err || isMatch === false) {
+                        return res.json({
+                            msg: "password incorect"
+                        })
+                    }
+                    else {
+                        res.json({
+                            msg: "succssful login"
+                        })
+                    }
+                })
             }
         })
         .catch(err => {
