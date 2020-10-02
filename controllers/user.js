@@ -3,10 +3,10 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 exports.user_post_register = (req, res) => {
-
+    const {email, password, name, birth} = req.body
     // email 중복체크 => 패스워드 암호화 => db save
     userModel
-        .findOne({email: req.body.useremail})
+        .findOne({email})
         .then(user => {
             if(user) {
                 return res.json({
@@ -15,7 +15,7 @@ exports.user_post_register = (req, res) => {
             }
             else {
 
-                bcrypt.hash(req.body.userpassword, 10, (err, hash) => {
+                bcrypt.hash(password, 10, (err, hash) => {
                     if(err) {
                         return res.json({
                             msg: err.message
@@ -25,10 +25,10 @@ exports.user_post_register = (req, res) => {
                     else {
                         // db saveed
                         const newUser = new userModel({
-                            name: req.body.username,
-                            email: req.body.useremail,
+                            name,
+                            email,
                             password: hash,
-                            birth: req.body.userbirth
+                            birth
 
 
                         })
@@ -64,9 +64,9 @@ exports.user_post_register = (req, res) => {
 
 exports.user_post_login = (req, res) => {
     //email 유무체크 => password 매칭 => 유저정보 리턴
-
+    const {email, password} = req.body
     userModel
-        .findOne({email: req.body.useremail})
+        .findOne({email})
         .then(user => {
             if(!user) {
                 return res.json({
@@ -74,7 +74,7 @@ exports.user_post_login = (req, res) => {
                 })
             }
             else {
-                bcrypt.compare(req.body.userpassword, user.password, (err, isMatch) => {
+                bcrypt.compare(password, user.password, (err, isMatch) => {
                     if(err || isMatch === false) {
                         return res.json({
                             msg: "password incorect"

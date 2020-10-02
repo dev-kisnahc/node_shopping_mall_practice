@@ -133,9 +133,12 @@ exports.orders_update_order = (req, res)=>{
 
 exports.orders_post_order = (req, res)=>{
 
+
+    const {product, quantity} = req.body
+
     const newOrder = new orderModel({
-        product: req.body.productid,
-        quantity: req.body.qty
+        product,
+        quantity
     })
 
     newOrder
