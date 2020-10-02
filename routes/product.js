@@ -52,7 +52,7 @@ router.get('/', (req, res)=>{
         .find()
         .then(docs => {
             if(docs.length === 0){
-                res.json({
+                return res.json({
                     msg: '등록된 프로덕트가 없음'
                 })
             }
@@ -88,7 +88,7 @@ router.get('/:productID', (req, res)=>{
         .findById(id)
         .then(doc => {
             if(!doc){
-                res.json({
+                return res.json({
                     msg: "no product id"
                 })
             }
@@ -129,7 +129,6 @@ router.patch('/:productID', (req, res)=>{
     // console.log("+++++++++++", req.body)
 
     for (const ops of req.body) {
-
         updateOps[ops.propName] = ops.value
          console.log("----", updateOps)
     }
@@ -201,3 +200,6 @@ router.delete('/:productID', (req, res)=>{
 
 
 module.exports = router
+
+
+

@@ -25,6 +25,7 @@ mongoose
 
 const productRoute = require('./routes/product')
 const orderRoute = require('./routes/order')
+const userRoute = require('./routes/user')
 
 
 // middleware
@@ -36,7 +37,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 // routing
 app.use('/product', productRoute)
 app.use('/order', orderRoute)
-
+app.use('/user', userRoute)
 
 
 
