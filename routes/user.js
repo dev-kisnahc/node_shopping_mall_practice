@@ -9,41 +9,60 @@ const userModel = require("../models/user")
 
 router.post('/register', (req, res) => {
 
-    bcrypt.hash(req.body.userpassword, 10, (err, hash) => {
-            if(err) {
+    // email 중복체크 => 패스워드 암호화 => db save
+    userModel
+        .findOne({email: req.body.useremail})
+        .then(user => {
+            if(user) {
                 return res.json({
-                    msg: err.message
+                    msg: "이메일이 있습니다. "
                 })
-
             }
             else {
-                // db saveed
-                const newUser = new userModel({
-                    name: req.body.username,
-                    email: req.body.useremail,
-                    password: hash,
-                    birth: req.body.userbirth
 
-
-
-                })
-
-                newUser
-                    .save()
-                    .then(user => {
-                        console.log("-----", user)
-                        res.json({
-                            msg: "saved user",
-                            userInfo: user
-                        })
-                    })
-                    .catch(err => {
-                        res.json({
+                bcrypt.hash(req.body.userpassword, 10, (err, hash) => {
+                    if(err) {
+                        return res.json({
                             msg: err.message
                         })
-                    })
+
+                    }
+                    else {
+                        // db saveed
+                        const newUser = new userModel({
+                            name: req.body.username,
+                            email: req.body.useremail,
+                            password: hash,
+                            birth: req.body.userbirth
+
+
+
+                        })
+
+                        newUser
+                            .save()
+                            .then(user => {
+                                console.log("-----", user)
+                                res.json({
+                                    msg: "saved user",
+                                    userInfo: user
+                                })
+                            })
+                            .catch(err => {
+                                res.json({
+                                    msg: err.message
+                                })
+                            })
+                    }
+                })
             }
         })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
+
 
 
 
