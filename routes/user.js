@@ -90,7 +90,9 @@ router.post('/login', (req, res) => {
                     }
                     else {
                         res.json({
-                            msg: "succssful login"
+                            msg: "succssful login",
+                            userInfo: user
+
                         })
                     }
                 })
