@@ -71,7 +71,25 @@ router.post('/register', (req, res) => {
 // Log-in API
 
 router.post('/login', (req, res) => {
+    //email 유무체크 => password 매칭 => 유저정보 리턴
 
+    userModel
+        .findOne({email: req.body.useremail})
+        .then(user => {
+            if(!user) {
+                return res.json({
+                    msg: "not found email"
+                })
+            }
+            else {
+
+            }
+        })
+        .catch(err => {
+            res.json({
+                msg: err.message
+            })
+        })
 })
 
 module.exports = router
