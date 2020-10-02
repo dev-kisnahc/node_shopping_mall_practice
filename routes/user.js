@@ -1,5 +1,6 @@
 const express = require("express")
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 const router = express.Router()
 
@@ -89,11 +90,22 @@ router.post('/login', (req, res) => {
                         })
                     }
                     else {
-                        res.json({
-                            msg: "succssful login",
-                            userInfo: user
+                        // res.json({
+                        //     msg: "succssful login",
+                        //     userInfo: user
+                        //
+                        // })
 
-                        })
+
+                        // token 생성
+                        const token = jwt.sign(
+                            {id: user._id, eamil: user.email},
+                            "secret",
+                            {expiresIn: "1d"}
+                        )
+                        res.json({token})
+
+
                     }
                 })
             }
