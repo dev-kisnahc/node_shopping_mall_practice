@@ -25,9 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e29ef2e4-bc91-4257-9ba4-5b9f1b84ae73" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +66,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/routes" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -95,7 +99,14 @@
       <workItem from="1601102265382" duration="3092000" />
       <workItem from="1601273551735" duration="490000" />
       <workItem from="1601292958902" duration="2023000" />
-      <workItem from="1601503408262" duration="18276000" />
+      <workItem from="1601503408262" duration="19137000" />
+      <workItem from="1601625398288" duration="605000" />
+      <workItem from="1601733071816" duration="2000" />
+      <workItem from="1602402574268" duration="1117000" />
+      <workItem from="1602426951041" duration="1124000" />
+      <workItem from="1602653185896" duration="8000" />
+      <workItem from="1603778464254" duration="10000" />
+      <workItem from="1603778500057" duration="3000" />
     </task>
     <servers />
   </component>
@@ -145,7 +156,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/product.js</url>
           <line>70</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -2,13 +2,13 @@ const express = require('express')
 const logger = require("morgan")
 const bodyParser = require('body-parser')
 const mongoose = require("mongoose")
-
+const config = require("./config/dev")
 const app = express()
 
 
 // database connect
 
-const dbAddress = "mongodb+srv://kisnahc:rkdcks12@cluster0.kck9d.mongodb.net/shoppingmall?retryWrites=true&w=majority"
+const dbAddress = (config.mongoURI)
 
 const dbOptions = {
     useNewUrlParser: true,
